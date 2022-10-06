@@ -7,14 +7,20 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.coderem.database.UserViewModel
+import com.example.coderem.profiles.*
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var  drawer: DrawerLayout
+    lateinit var vm:UserViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        vm = ViewModelProvider(this)[UserViewModel::class.java]
         drawer=findViewById(R.id.drawer)
         val nav: NavigationView =findViewById(R.id.nav)
         val view: View = nav.getHeaderView(0)
@@ -24,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         nav.setCheckedItem(R.id.myHome)
-        //nav.checkedItem!!.isChecked = false
 
         nav.setNavigationItemSelectedListener {
 
@@ -32,16 +37,40 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
 
                 R.id.myHome->{
-                   replace(home())
+                   replace(Home())
                 }
                 R.id.cc ->{
-                   replace(codechef())
+                    vm.readccdata.observe(this, Observer { user->
+                        if(user==null){
+                            replace(codechef())
+                        }
+                        else{
+                            replace(UserCodeChef())
+                        }
+                        })
+
                 }
                 R.id.cf ->{
-                    replace(codeforces())
+                    vm.readcfdata.observe(this, Observer { user->
+                        if(user==null){
+                            replace(codeforces())
+                        }
+                        else{
+                            replace(UserCodeForces())
+                        }
+                    })
+
                 }
                 R.id.lc->{
-                    replace(leetcode())
+                    vm.readlcdata.observe(this, Observer { user->
+                        if(user==null){
+                            replace(leetcode())
+                        }
+                        else{
+                            replace(UserLeetCode())
+                        }
+                    })
+
                 }
             }
 

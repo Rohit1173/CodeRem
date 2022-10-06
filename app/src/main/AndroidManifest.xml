@@ -14,13 +14,13 @@
         android:theme="@style/Theme.CodeRem"
         tools:targetApi="31">
         <activity
-            android:name=".leetcode"
+            android:name=".profiles.leetcode"
             android:exported="false" />
         <activity
-            android:name=".codeforces"
+            android:name=".profiles.codeforces"
             android:exported="false" />
         <activity
-            android:name=".codechef"
+            android:name=".profiles.codechef"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

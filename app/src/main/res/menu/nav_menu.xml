@@ -7,15 +7,19 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/myHome"
+            android:icon="@drawable/ic_home"
             android:title="Home" />
         <item
             android:id="@+id/cc"
+            android:icon="@drawable/ic_codechef"
             android:title="CodeChef" />
         <item
             android:id="@+id/cf"
+            android:icon="@drawable/ic_codeforces"
             android:title="CodeForces" />
         <item
             android:id="@+id/lc"
+            android:icon="@drawable/ic_leetcode"
             android:title="Leetcode" />
     </group>
 

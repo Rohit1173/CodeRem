@@ -1,9 +1,9 @@
-package com.example.coderem
+package com.example.coderem.api
 
-import android.service.autofill.UserData
+import com.example.coderem.CodeData
 import retrofit2.http.GET
 
-interface my_api {
+interface My_api {
     @GET("v1/codeforces")
     suspend fun getCfData(): MutableList<CodeData>
 }

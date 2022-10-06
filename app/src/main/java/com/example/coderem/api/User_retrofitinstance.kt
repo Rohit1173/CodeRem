@@ -1,4 +1,4 @@
-package com.example.coderem
+package com.example.coderem.api
 
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.squareup.moshi.Moshi
@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL =
-    "https://www.kontests.net/api/"
+    "https://competitive-coding-api.herokuapp.com/api/"
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -20,8 +20,8 @@ private val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .build()
 
-object retrofitInstance {
-    val api: my_api by lazy {
-        retrofit.create(my_api::class.java)
+object User_retrofitInstance {
+    val api: User_api by lazy {
+        retrofit.create(User_api::class.java)
     }
 }

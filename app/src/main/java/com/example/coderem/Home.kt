@@ -1,21 +1,17 @@
 package com.example.coderem
 
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.google.android.material.navigation.NavigationView
 
 
-class home : Fragment() {
-    lateinit var vm: ViewModel
+class Home : Fragment() {
+    lateinit var vm: ContestViewModel
     lateinit var re: RecyclerView
     lateinit var myre: RecyclerView
     lateinit var shim: ShimmerFrameLayout
@@ -33,7 +29,7 @@ class home : Fragment() {
         re=v.findViewById(R.id.recycler)
         myre=v.findViewById(R.id.names)
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
-            .create(ViewModel::class.java)
+            .create(ContestViewModel::class.java)
 
 
         vm.myevent.observe(viewLifecycleOwner){

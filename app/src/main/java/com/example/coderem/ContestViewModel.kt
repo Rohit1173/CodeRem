@@ -5,9 +5,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.coderem.api.RetrofitInstance
 import kotlinx.coroutines.launch
 
-class ViewModel(application: Application):AndroidViewModel(application) {
+open class ContestViewModel(application: Application):AndroidViewModel(application) {
     private val _status = MutableLiveData<String>()
     val status: LiveData<String> = _status
 
@@ -24,7 +25,7 @@ class ViewModel(application: Application):AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 _myevent.value =
-                    retrofitInstance.api.getCfData()
+                    RetrofitInstance.api.getCfData()
                 _status.value = "SUCCESS"
 
 
