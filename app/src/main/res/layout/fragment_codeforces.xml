@@ -16,6 +16,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="100dp"
+        app:endIconMode="clear_text"
+        app:errorEnabled="true"
+        app:errorIconDrawable="@drawable/ic_error"
+        app:startIconDrawable="@drawable/ic_person"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cftext"

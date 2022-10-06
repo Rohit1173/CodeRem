@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.ProfileViewModel
@@ -37,24 +38,33 @@ class codechef : Fragment() {
         cclayout=v.findViewById(R.id.cclayout)
         cctext=v.findViewById(R.id.cctext)
         ccbtn=v.findViewById(R.id.ccbtn)
-
+            cctext.doOnTextChanged { text, start, before, count ->
+                if (text.toString().isNotEmpty()) {
+                    cclayout.error = null
+                }
+            }
 
         ccbtn.setOnClickListener {
-           if(cctext.text.toString().trim()!=null) {
+           if(cctext.text.toString().trim().isEmpty()) {
+              cclayout.error="ID cannot be empty"
 
-               val user = User(0, "CodeChef", cctext.text.toString())
-
-               //Toast.makeText(requireContext(),"SUCCESS!!!",Toast.LENGTH_LONG).show()
-               viewModelFactory = ProfileViewModelFactory(cctext.text.toString())
-               pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
-               pvm.getPost(cctext.text.toString())
-               pvm.myResponse.observe(viewLifecycleOwner, Observer {
-                   Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
-                   vm.addUser(user)
-               })
            }
             else{
+               val user = User(0, "CodeChef", cctext.text.toString().trim())
 
+               //Toast.makeText(requireContext(),"SUCCESS!!!",Toast.LENGTH_LONG).show()
+               viewModelFactory = ProfileViewModelFactory(cctext.text.toString().trim())
+               pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
+               pvm.getCcStatus(cctext.text.toString().trim())
+               pvm.myResponse.observe(viewLifecycleOwner, Observer {
+                   if(it.status.toString()=="Success") {
+                       Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+                       vm.addUser(user)
+                   }
+                   else{
+                       cclayout.error="Invalid ID"
+                   }
+               })
            }
 
         }

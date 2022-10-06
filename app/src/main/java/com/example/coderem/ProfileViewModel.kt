@@ -9,9 +9,20 @@ import kotlinx.coroutines.launch
 class ProfileViewModel(val profile:String): ViewModel() {
 
      val myResponse:MutableLiveData<CCdata> = MutableLiveData()
-        fun getPost(profile: String){
+        fun getCcStatus(profile: String){
             viewModelScope.launch {
               myResponse.value=User_retrofitInstance.api.getuserCcData(profile)
             }
         }
+    fun getCfStatus(profile: String){
+        viewModelScope.launch {
+            myResponse.value=User_retrofitInstance.api.getuserCfData(profile)
+        }
+    }
+    fun getLcStatus(profile: String){
+        viewModelScope.launch {
+            myResponse.value=User_retrofitInstance.api.getuserLcData(profile)
+        }
+    }
+
 }

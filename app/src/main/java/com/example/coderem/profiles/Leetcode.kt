@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.coderem.ProfileViewModel
+import com.example.coderem.ProfileViewModelFactory
 import com.example.coderem.R
 import com.example.coderem.database.User
 import com.example.coderem.database.UserViewModel
@@ -20,6 +24,8 @@ class leetcode : Fragment() {
     lateinit var lclayout: TextInputLayout
     lateinit var lctext: TextInputEditText
     lateinit var lcbtn: Button
+    lateinit var pvm: ProfileViewModel
+    lateinit var viewModelFactory: ProfileViewModelFactory
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,10 +36,38 @@ class leetcode : Fragment() {
         lclayout=v.findViewById(R.id.lclayout)
         lctext=v.findViewById(R.id.lctext)
         lcbtn=v.findViewById(R.id.lcbtn)
+        lctext.doOnTextChanged { text, start, before, count ->
+            if (text.toString().isNotEmpty()) {
+                lclayout.error = null
+            }
+        }
         lcbtn.setOnClickListener {
-            val user = User(0,"LeetCode",lctext.text.toString())
-            vm.addUser(user)
-            Toast.makeText(requireContext(),"SUCCESS!!!", Toast.LENGTH_LONG).show()
+            if(lctext.text.toString().trim().isEmpty()) {
+                lclayout.error="ID cannot be empty"
+
+            }
+            else {
+                val user = User(0, "LeetCode", lctext.text.toString())
+                viewModelFactory = ProfileViewModelFactory(lctext.text.toString().trim())
+                pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
+                pvm.getLcStatus(lctext.text.toString().trim())
+                pvm.myResponse.observe(viewLifecycleOwner, Observer {
+
+                    if(it!=null) {
+                        if (it.status.toString() == "Success") {
+                            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)
+                                .show()
+                            vm.addUser(user)
+                        } else {
+                            lclayout.error = "Invalid ID"
+                        }
+                    }
+                    else{
+                        Toast.makeText(requireContext(), "Try Again", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                })
+            }
         }
         return v
     }
