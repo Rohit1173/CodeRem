@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,10 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CODECHEF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+         />
 
 
     <Button
@@ -23,10 +22,49 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOG OUT"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ucc_id"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/ccrating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ucc_id"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/ccstars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ccrating"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/cc_highestRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ccstars"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/cc_globalRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cc_highestRating"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/cc_countryRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cc_globalRank"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

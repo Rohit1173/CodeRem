@@ -50,21 +50,22 @@ class codechef : Fragment() {
 
            }
             else{
-               val user = User(0, "CodeChef", cctext.text.toString().trim())
-
-               //Toast.makeText(requireContext(),"SUCCESS!!!",Toast.LENGTH_LONG).show()
                viewModelFactory = ProfileViewModelFactory(cctext.text.toString().trim())
                pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
                pvm.getCcStatus(cctext.text.toString().trim())
-               pvm.myResponse.observe(viewLifecycleOwner, Observer {
+               pvm.ccResponse.observe(viewLifecycleOwner, Observer {
                    if(it.status.toString()=="Success") {
+
                        Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+                       val user = User(0, "CodeChef", cctext.text.toString().trim())
+
                        vm.addUser(user)
                    }
                    else{
                        cclayout.error="Invalid ID"
                    }
                })
+
            }
 
         }

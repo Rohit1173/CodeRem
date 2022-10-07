@@ -47,16 +47,17 @@ class leetcode : Fragment() {
 
             }
             else {
-                val user = User(0, "LeetCode", lctext.text.toString())
+
                 viewModelFactory = ProfileViewModelFactory(lctext.text.toString().trim())
                 pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
                 pvm.getLcStatus(lctext.text.toString().trim())
-                pvm.myResponse.observe(viewLifecycleOwner, Observer {
+                pvm.lcResponse.observe(viewLifecycleOwner, Observer {
 
                     if(it!=null) {
                         if (it.status.toString() == "Success") {
                             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)
                                 .show()
+                            val user = User(0, "LeetCode", lctext.text.toString())
                             vm.addUser(user)
                         } else {
                             lclayout.error = "Invalid ID"

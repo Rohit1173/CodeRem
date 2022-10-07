@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,20 +13,84 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LEETCODE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+         />
 
     <Button
         android:id="@+id/lclogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOG OUT"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ulc_id"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+
+        />
+    <TextView
+        android:id="@+id/lc_ranking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ulc_id"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_easySolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_ranking"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_mediumSolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_easySolved"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_hardSolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_mediumSolved"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_hardSolved"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_problemsContributed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_points"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_tcContributed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_problemsContributed"
+        android:textSize="30sp"
+        />
+    <TextView
+        android:id="@+id/lc_reputation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/lc_tcContributed"
+        android:textSize="30sp"
         />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

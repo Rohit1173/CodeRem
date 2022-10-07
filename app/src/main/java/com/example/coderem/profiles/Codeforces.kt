@@ -48,13 +48,14 @@ class codeforces : Fragment() {
 
             }
             else {
-                val user = User(0, "CodeForces", cftext.text.toString())
+
                 viewModelFactory = ProfileViewModelFactory(cftext.text.toString().trim())
                 pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
                 pvm.getCfStatus(cftext.text.toString().trim())
-                pvm.myResponse.observe(viewLifecycleOwner, Observer {
+                pvm.cfResponse.observe(viewLifecycleOwner, Observer {
                     if(it.status.toString()=="Success") {
                         Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+                        val user = User(0, "CodeForces", cftext.text.toString())
                         vm.addUser(user)
                     }
                     else{
