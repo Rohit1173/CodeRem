@@ -25,7 +25,7 @@ open class ContestViewModel(application: Application):AndroidViewModel(applicati
         viewModelScope.launch {
             try {
                 _myevent.value =
-                    RetrofitInstance.api.getCfData()
+                    RetrofitInstance.api.getCodeData()
                 _status.value = "SUCCESS"
 
 

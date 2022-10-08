@@ -1,5 +1,6 @@
 package com.example.coderem
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -33,9 +34,11 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         val countdown:TextView = view.findViewById(R.id.countdown)
         val context: Context = view.context
         val alarm:SwitchMaterial=view.findViewById(R.id.alarm)
+        val site:TextView=view.findViewById(R.id.site)
         var countDownTimer: CountDownTimer? =null
 
-        fun printDifferenceDateForHours(s1:String,s2:String,t:TextView) {
+        fun printDifferenceDateForHours(s1:String,s2:String,t:TextView,check:Boolean) {
+
            // var currentTime = Calendar.getInstance().time
             val currentTime = SimpleDateFormat("yyyy-MM-dd HH:mm:ss a", Locale.getDefault()).format(Date())
 
@@ -43,8 +46,6 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
             val endDate1 = format.parse(s1)
             val endDate2 = format.parse(s2)
             val cur=format.parse(currentTime)
-
-               // Toast.makeText(context, "${endDate1.time} ${endDate2.time} ${cur.time}",Toast.LENGTH_LONG).show()
 
 
             //milliseconds
@@ -57,6 +58,7 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
 
             countDownTimer = object : CountDownTimer(different, 1000) {
 
+                @SuppressLint("SetTextI18n")
                 override fun onTick(millisUntilFinished: Long) {
                     var diff = millisUntilFinished
                     val secondsInMilli: Long = 1000
@@ -78,6 +80,7 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
                     t.text = "$elapsedDays:$elapsedHours:$elapsedMinutes:$elapsedSeconds"
                 }
 
+                @SuppressLint("SetTextI18n")
                 override fun onFinish() {
                     t.text = "done!"
                 }
@@ -97,20 +100,49 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
 
         val item = list[position]
         holder.name.text = item.name
-         var str1:String=item.start_time
-        var str2:String=item.end_time
+        holder.site.text=item.site
+        val str1:String=item.start_time
+        val str2:String=item.end_time
         var s1:String = str1
         var s2:String = str2
-
+        var check:Boolean=false
         if ((item.start_time.length>12 && item.start_time[10] == ' ')||(item.end_time.length>12 && item.end_time[10] == ' ')) {
+            var conv:Long=19800000
+            var a1:String="am"
+            var a2:String="am"
+            val k1:Int=(item.start_time[11]-'0')*10
+            val m1:Int=item.start_time[12]-'0'
+            val ans1:Int=k1+m1
+            if(ans1>=12){
+                a1="pm"
+            }
 
-            //s1+="am"
+            val k2:Int=(item.end_time[11]-'0')*10
+            val m2:Int=item.end_time[12]-'0'
+            val ans2:Int=k2+m2
+            if(ans2>=12){
+                a2="pm"
+            }
 
-           // s2+="am"
-            s1=s1.substring(0, s1.length- 3) +"am"
-            s2=s2.substring(0, s2.length- 3)+"am"
+            s1=s1.substring(0, s1.length- 3)+a1
+            s2=s2.substring(0, s2.length- 3)+a2
+
+            val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa", Locale.getDefault())
+            val e1 = format.parse(s1)
+            val e2 = format.parse(s2)
+
+            val t1:Long=e1!!.time+conv
+            val t2:Long=e2!!.time+conv
+
+            val r1 = Date(t1)
+            val r2=Date(t2)
+            s1=format.format(r1)
+            s2=format.format(r2)
+
+
             holder.startTime.text = s1
             holder.endTime.text = s2
+            check=true
         }
         else {
             s1 = change(str1)
@@ -119,12 +151,8 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
             holder.endTime.text = s2
         }
 
+        holder.printDifferenceDateForHours(s1, s2, holder.countdown,check)
 
-
-
-
-
-        holder.printDifferenceDateForHours(s1, s2, holder.countdown)
 
         holder.alarm.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
            if(isChecked){

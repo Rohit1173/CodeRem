@@ -14,7 +14,6 @@ class FilterAdapter(private var list: MutableList<String>): RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(parent.context)
             .inflate(R.layout.filter, parent, false)
-
         return FilterAdapter.ViewHolder(view)
     }
 

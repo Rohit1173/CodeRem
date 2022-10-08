@@ -68,6 +68,23 @@
             android:layout_margin="10dp"
             android:text="REGISTER" />
 
+
+        <TextView
+            android:id="@+id/site"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CODECHEF"
+            android:layout_toEndOf="@+id/register"
+            android:layout_below="@+id/endTime"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginLeft="30dp"
+
+
+
+            />
+
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/alarm"
             android:layout_width="wrap_content"

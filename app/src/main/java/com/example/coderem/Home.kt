@@ -1,6 +1,7 @@
 package com.example.coderem
 
 import android.os.Bundle
+import android.system.Os.remove
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,11 +38,18 @@ class Home : Fragment() {
                 shim.stopShimmer()
                 shim.visibility=View.GONE
                 re.visibility=View.VISIBLE
+
             }
-            re.adapter=DataAdapter(it)
+            val ml:MutableList<CodeData> = mutableListOf()
+            for(i in it){
+                if(i.site!="HackerRank"&&i.site!="HackerEarth"){
+                    ml.add(i);
+                }
+            }
+            re.adapter=DataAdapter(ml)
             re.setHasFixedSize(true)
         }
-        val list:MutableList<String> = mutableListOf("CODEFORCES","CODECHEF","LEETCODE","HACKEREARTH")
+        val list:MutableList<String> = mutableListOf("CODEFORCES","CODECHEF","LEETCODE","ATCODER","KICKSTART")
         myre.adapter=FilterAdapter(list)
         myre.setHasFixedSize(true)
 
