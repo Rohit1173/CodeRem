@@ -9,5 +9,6 @@ data class CFdata(
       val rating:String,
       @Json(name = "max rating") val max_rating:String,
       val rank:String,
-      @Json(name = "max rank")val max_rank:String
+      @Json(name = "max rank")val max_rank:String,
+      val contests:List<CfContest>
 )

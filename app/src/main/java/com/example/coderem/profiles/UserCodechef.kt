@@ -1,6 +1,7 @@
 package com.example.coderem.profiles
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,10 @@ import com.example.coderem.ProfileViewModelFactory
 import com.example.coderem.R
 import com.example.coderem.database.User
 import com.example.coderem.database.UserViewModel
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 
 
 class UserCodeChef : Fragment() {
@@ -24,6 +29,10 @@ class UserCodeChef : Fragment() {
     lateinit var user: User
     lateinit var pvm: ProfileViewModel
     lateinit var viewModelFactory: ProfileViewModelFactory
+    lateinit var ccLineChart: LineChart
+    lateinit var ccLineEntry:ArrayList<Entry>
+    lateinit var ccLineDataSet: LineDataSet
+    lateinit var ccLineData: LineData
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +48,8 @@ class UserCodeChef : Fragment() {
         val cc_highestRating:TextView=v.findViewById(R.id.cc_highestRating)
         val cc_globalRank:TextView=v.findViewById(R.id.cc_globalRank)
         val cc_countryRank:TextView=v.findViewById(R.id.cc_countryRank)
-
+        ccLineChart=v.findViewById(R.id.ccLineChart)
+        ccLineEntry=ArrayList<Entry>()
 
 
         vm.readccdata.observe(viewLifecycleOwner, Observer { mUser ->
@@ -55,10 +65,23 @@ class UserCodeChef : Fragment() {
                     cc_highestRating.text="Highest rating : "+it.highest_rating
                     cc_globalRank.text="Global rank : "+it.global_rank
                     cc_countryRank.text="Country rank : "+it.country_rank
+                    var cnt=1f
+                    for(i in it.contest_ratings){
+                        ccLineEntry.add(Entry(cnt,i.rating.toFloat()))
+                        cnt+=2
+                    }
+                    ccLineDataSet = LineDataSet(ccLineEntry,"First")
+                    ccLineData= LineData(ccLineDataSet)
+                    ccLineDataSet.color= Color.BLACK
+                    ccLineChart.data=ccLineData
+                    ccLineDataSet.valueTextColor= Color.BLACK
+                    ccLineDataSet.valueTextSize=15f
+
 
                 })
             }
         })
+
 
 
         cclogout.setOnClickListener {
