@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.coderem.MyCustomFormatter
 import com.example.coderem.ProfileViewModel
 import com.example.coderem.ProfileViewModelFactory
 import com.example.coderem.R
@@ -21,6 +22,9 @@ import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class UserCodeChef : Fragment() {
@@ -51,7 +55,6 @@ class UserCodeChef : Fragment() {
         ccLineChart=v.findViewById(R.id.ccLineChart)
         ccLineEntry=ArrayList<Entry>()
 
-
         vm.readccdata.observe(viewLifecycleOwner, Observer { mUser ->
             if(mUser!=null) {
                 uccId.text = mUser.profile
@@ -65,17 +68,24 @@ class UserCodeChef : Fragment() {
                     cc_highestRating.text="Highest rating : "+it.highest_rating
                     cc_globalRank.text="Global rank : "+it.global_rank
                     cc_countryRank.text="Country rank : "+it.country_rank
+                    ccLineChart.xAxis.valueFormatter= MyCustomFormatter()
                     var cnt=1f
                     for(i in it.contest_ratings){
-                        ccLineEntry.add(Entry(cnt,i.rating.toFloat()))
+                        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+                        val e1 = format.parse(i.end_date)
+                        ccLineEntry.add(Entry(e1!!.time.toFloat(),i.rating.toFloat()))
                         cnt+=2
                     }
+
+
                     ccLineDataSet = LineDataSet(ccLineEntry,"First")
                     ccLineData= LineData(ccLineDataSet)
                     ccLineDataSet.color= Color.BLACK
                     ccLineChart.data=ccLineData
                     ccLineDataSet.valueTextColor= Color.BLACK
                     ccLineDataSet.valueTextSize=15f
+                    ccLineChart.animateX(2000)
+
 
 
                 })

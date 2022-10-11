@@ -56,7 +56,7 @@ class UserCodeForces : Fragment() {
                 user = mUser
                 viewModelFactory = ProfileViewModelFactory(user.profile)
                 pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
-                pvm.getCfData(user.profile.toString())
+                pvm.getCfData(user.profile)
                 pvm.cfdataResponse.observe(viewLifecycleOwner, Observer {
                     cfRating.text="Rating : "+it.rating
                     cf_maxRating.text="Max rating : "+it.max_rating
@@ -73,6 +73,7 @@ class UserCodeForces : Fragment() {
                     cfLineChart.data=cfLineData
                     cfLineDataSet.valueTextColor= Color.BLACK
                     cfLineDataSet.valueTextSize=15f
+                    cfLineChart.animateX(2000)
 
                 })
             }

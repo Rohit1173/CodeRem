@@ -12,6 +12,7 @@
         android:textSize="15sp"
         android:padding="10dp"
         android:layout_margin="20dp"
+        android:backgroundTint="#7985EE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
