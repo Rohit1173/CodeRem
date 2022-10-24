@@ -1,8 +1,6 @@
-package com.example.coderem.database
+package com.example.coderem.database.database1
 
 import androidx.lifecycle.LiveData
-import com.example.coderem.database.User
-import com.example.coderem.database.UserDao
 
 class UserRepository(private val userDao: UserDao){
 

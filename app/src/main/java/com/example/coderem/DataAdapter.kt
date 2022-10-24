@@ -15,8 +15,12 @@ import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.coderem.database.database2.CheckBoxViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
 import java.text.SimpleDateFormat
 import java.time.ZoneId
@@ -33,10 +37,9 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         val register: Button = view.findViewById(R.id.register)
         val countdown:TextView = view.findViewById(R.id.countdown)
         val context: Context = view.context
-        val alarm:SwitchMaterial=view.findViewById(R.id.alarm)
+        val checkB:AppCompatCheckBox=view.findViewById(R.id.checkbox)
         val site:TextView=view.findViewById(R.id.site)
         var countDownTimer: CountDownTimer? =null
-
         fun printDifferenceDateForHours(s1:String,s2:String,t:TextView,check:Boolean) {
 
            // var currentTime = Calendar.getInstance().time
@@ -107,7 +110,7 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         var s2:String = str2
         var check:Boolean=false
         if ((item.start_time.length>12 && item.start_time[10] == ' ')||(item.end_time.length>12 && item.end_time[10] == ' ')) {
-            var conv:Long=19800000
+            val conv:Long=19800000
             var a1:String="am"
             var a2:String="am"
             val k1:Int=(item.start_time[11]-'0')*10
@@ -154,11 +157,11 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         holder.printDifferenceDateForHours(s1, s2, holder.countdown,check)
 
 
-        holder.alarm.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
-           if(isChecked){
-              //TODO()
-           }
-        })
+//        holder.check.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+//           if(isChecked){
+//              //TODO()
+//           }
+//        })
 
 
         holder.register.setOnClickListener {

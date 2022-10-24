@@ -1,4 +1,4 @@
-package com.example.coderem.database
+package com.example.coderem.database.database1
 
 import androidx.room.Entity
 import androidx.room.Index

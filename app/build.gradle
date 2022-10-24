@@ -16,6 +16,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures{
+        viewBinding true
+    }
 
     buildTypes {
         release {
@@ -121,6 +124,7 @@ dependencies {
 
     //Graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
 
 
 }

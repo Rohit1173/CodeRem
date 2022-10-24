@@ -1,74 +1,71 @@
 package com.example.coderem.profiles
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.ProfileViewModel
 import com.example.coderem.ProfileViewModelFactory
-import com.example.coderem.R
-import com.example.coderem.database.User
-import com.example.coderem.database.UserViewModel
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.example.coderem.database.database1.User
+import com.example.coderem.database.database1.UserViewModel
+import com.example.coderem.databinding.FragmentCodechefBinding
+import retrofit2.HttpException
 
 
 class codechef : Fragment() {
 
     private lateinit var vm: UserViewModel
-    lateinit var cclayout:TextInputLayout
-    lateinit var cctext:TextInputEditText
-    lateinit var ccbtn:Button
     lateinit var pvm:ProfileViewModel
     lateinit var viewModelFactory: ProfileViewModelFactory
+    lateinit var binding: FragmentCodechefBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v= inflater.inflate(R.layout.fragment_codechef, container, false)
+        binding=FragmentCodechefBinding.inflate(inflater,container,false)
         vm = ViewModelProvider(this)[UserViewModel::class.java]
 
-        cclayout=v.findViewById(R.id.cclayout)
-        cctext=v.findViewById(R.id.cctext)
-        ccbtn=v.findViewById(R.id.ccbtn)
-            cctext.doOnTextChanged { text, start, before, count ->
+            binding.cctext.doOnTextChanged { text, start, before, count ->
                 if (text.toString().isNotEmpty()) {
-                    cclayout.error = null
+                    binding.cclayout.error = null
                 }
             }
 
-        ccbtn.setOnClickListener {
-           if(cctext.text.toString().trim().isEmpty()) {
-              cclayout.error="ID cannot be empty"
+        binding.ccbtn.setOnClickListener {
+           if(binding.cctext.text.toString().trim().isEmpty()) {
+               binding.cclayout.error="ID cannot be empty"
 
            }
             else{
-               viewModelFactory = ProfileViewModelFactory(cctext.text.toString().trim())
+               viewModelFactory = ProfileViewModelFactory(binding.cctext.text.toString().trim())
                pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
-               pvm.getCcStatus(cctext.text.toString().trim())
-               pvm.ccResponse.observe(viewLifecycleOwner, Observer {
-                   if(it.status.toString()=="Success") {
+               try {
+                   pvm.getCcStatus(binding.cctext.text.toString().trim())
+                   pvm.ccResponse.observe(viewLifecycleOwner, Observer {
+                       if (it.status.toString() == "Success") {
 
-                       Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
-                       val user = User(0, "CodeChef", cctext.text.toString().trim())
+                           Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+                           val user = User(0, "CodeChef", binding.cctext.text.toString().trim())
 
-                       vm.addUser(user)
-                   }
-                   else{
-                       cclayout.error="Invalid ID"
-                   }
-               })
+                           vm.addUser(user)
+                       } else {
+                           binding.cclayout.error = "Invalid ID"
+                       }
+                   })
+               }
+               catch (e:HttpException){
+                   Toast.makeText(context,e.toString(),Toast.LENGTH_LONG).show()
+               }
 
            }
 
         }
-        return v
+        return binding.root
     }
 }

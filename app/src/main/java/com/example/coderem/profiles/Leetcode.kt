@@ -5,62 +5,54 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.ProfileViewModel
 import com.example.coderem.ProfileViewModelFactory
-import com.example.coderem.R
-import com.example.coderem.database.User
-import com.example.coderem.database.UserViewModel
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.example.coderem.database.database1.User
+import com.example.coderem.database.database1.UserViewModel
+import com.example.coderem.databinding.FragmentLeetcodeBinding
 
 class leetcode : Fragment() {
 
     private lateinit var vm: UserViewModel
-    lateinit var lclayout: TextInputLayout
-    lateinit var lctext: TextInputEditText
-    lateinit var lcbtn: Button
     lateinit var pvm: ProfileViewModel
     lateinit var viewModelFactory: ProfileViewModelFactory
+    lateinit var binding: FragmentLeetcodeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val v= inflater.inflate(R.layout.fragment_leetcode, container, false)
+        binding= FragmentLeetcodeBinding.inflate(inflater,container,false)
         vm = ViewModelProvider(this)[UserViewModel::class.java]
-        lclayout=v.findViewById(R.id.lclayout)
-        lctext=v.findViewById(R.id.lctext)
-        lcbtn=v.findViewById(R.id.lcbtn)
-        lctext.doOnTextChanged { text, start, before, count ->
+        binding.lctext.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                lclayout.error = null
+                binding.lclayout.error = null
             }
         }
-        lcbtn.setOnClickListener {
-            if(lctext.text.toString().trim().isEmpty()) {
-                lclayout.error="ID cannot be empty"
+        binding.lcbtn.setOnClickListener {
+            if(binding.lctext.text.toString().trim().isEmpty()) {
+                binding.lclayout.error="ID cannot be empty"
 
             }
             else {
 
-                viewModelFactory = ProfileViewModelFactory(lctext.text.toString().trim())
+                viewModelFactory = ProfileViewModelFactory(binding.lctext.text.toString().trim())
                 pvm = ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
-                pvm.getLcStatus(lctext.text.toString().trim())
+                pvm.getLcStatus(binding.lctext.text.toString().trim())
                 pvm.lcResponse.observe(viewLifecycleOwner, Observer {
 
                     if(it!=null) {
                         if (it.status.toString() == "Success") {
                             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)
                                 .show()
-                            val user = User(0, "LeetCode", lctext.text.toString())
+                            val user = User(0, "LeetCode", binding.lctext.text.toString())
                             vm.addUser(user)
                         } else {
-                            lclayout.error = "Invalid ID"
+                            binding.lclayout.error = "Invalid ID"
                         }
                     }
                     else{
@@ -70,6 +62,6 @@ class leetcode : Fragment() {
                 })
             }
         }
-        return v
+        return binding.root
     }
 }

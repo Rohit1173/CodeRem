@@ -70,14 +70,14 @@
             android:backgroundTint="@color/shimmer"
          />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/alarm"
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/register"
-            android:layout_below="@id/endTime"
-            android:layout_marginStart="170dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/countdown"
             android:layout_marginTop="10dp"
+            android:button="@drawable/select_item"
             />
 
 
