@@ -8,8 +8,9 @@
     android:layout_margin="20dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
-    app:strokeColor="#6E75F4"
+    app:strokeColor="@color/prim"
     app:strokeWidth="2dp"
+    android:backgroundTint="#D8E3E7"
     app:cardPreventCornerOverlap="true">
 
     <RelativeLayout
@@ -27,6 +28,7 @@
                 android:textColor="#3C4A63"
                 android:fontFamily="@font/nunito_regular"
                 android:text="event name"
+                android:textStyle="bold"
                 android:textSize="30sp" />
 
 

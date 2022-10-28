@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.nav.setCheckedItem(R.id.myHome)
+        binding.nav.itemIconTintList=null
 
         binding.nav.setNavigationItemSelectedListener {
 
@@ -75,6 +76,16 @@ class MainActivity : AppCompatActivity() {
                     })
 
                 }
+                R.id.settings->{
+                    replace(settings())
+                }
+                R.id.faq->{
+                    replace(faq())
+                }
+                R.id.support->{
+                    replace(support())
+                }
+
             }
 
             true

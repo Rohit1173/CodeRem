@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/prim2"
+    tools:context=".splashscreen">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="46.24dp"
+            android:layout_height="50.47dp"
+            android:src="@drawable/ic_coderemthemelight"
+
+            />
+        <TextView
+            android:layout_width="138.73dp"
+            android:layout_height="57.41dp"
+            android:textSize="40sp"
+            android:text="CodeRem"
+            android:textColor="@color/white"
+            android:fontFamily="@font/satisfy_regular"
+            android:layout_marginLeft="10dp"
+
+            />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

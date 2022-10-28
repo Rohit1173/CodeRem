@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/nav_head"
     android:layout_width="match_parent"
+    android:orientation="horizontal"
     android:layout_height="match_parent">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_img"
-        android:layout_width="124dp"
-        android:layout_height="124dp"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="25dp"
         android:src="@drawable/profile_placeholder" />
@@ -17,11 +18,12 @@
         android:id="@+id/profile_username"
         android:layout_width="wrap_content"
         android:layout_height="33dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/nunito_regular"
         android:text="USERNAME"
-        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
 
-</RelativeLayout>
+</LinearLayout>

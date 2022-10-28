@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIN="navigation_view">
+
     <group
         android:id="@+id/grp1"
         android:checkableBehavior="single">
@@ -9,6 +10,9 @@
             android:id="@+id/myHome"
             android:icon="@drawable/ic_home"
             android:title="Home" />
+
+    <item android:title="Profiles">
+        <menu>
         <item
             android:id="@+id/cc"
             android:icon="@drawable/ic_codechef"
@@ -21,6 +25,27 @@
             android:id="@+id/lc"
             android:icon="@drawable/ic_leetcode"
             android:title="Leetcode" />
+        </menu>
+
+    </item>
+
+    <item android:title="Help">
+        <menu>
+            <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Settings" />
+            <item
+                android:id="@+id/faq"
+                android:icon="@drawable/ic_faq"
+                android:title="FAQ" />
+            <item
+                android:id="@+id/support"
+                android:icon="@drawable/ic_support"
+                android:title="Support" />
+        </menu>
+
+    </item>
     </group>
 
 </menu>

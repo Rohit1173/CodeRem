@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.coderem.database.database2.CheckBoxViewModel
 import com.google.android.material.switchmaterial.SwitchMaterial
 import java.text.SimpleDateFormat
@@ -40,6 +41,7 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         val checkB:AppCompatCheckBox=view.findViewById(R.id.checkbox)
         val site:TextView=view.findViewById(R.id.site)
         var countDownTimer: CountDownTimer? =null
+
         fun printDifferenceDateForHours(s1:String,s2:String,t:TextView,check:Boolean) {
 
            // var currentTime = Calendar.getInstance().time
@@ -155,6 +157,7 @@ class DataAdapter(private var list: MutableList<CodeData>):RecyclerView.Adapter<
         }
 
         holder.printDifferenceDateForHours(s1, s2, holder.countdown,check)
+
 
 
 //        holder.check.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
