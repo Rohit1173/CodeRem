@@ -13,7 +13,8 @@
         android:text="LEETCODE"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_extrabold"
          />
 
     <Button
@@ -21,9 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="LOG OUT"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/lc_reputation"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#FF0000"
+        android:fontFamily="@font/nunito_extrabold"
         />
     <TextView
         android:id="@+id/lc_ranking"

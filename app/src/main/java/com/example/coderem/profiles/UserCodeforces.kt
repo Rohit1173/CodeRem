@@ -60,10 +60,11 @@ class UserCodeForces : Fragment() {
                     }
                     cfLineDataSet = LineDataSet(cfLineEntry,"First")
                     cfLineData= LineData(cfLineDataSet)
-                    cfLineDataSet.color= Color.BLACK
+                    cfLineDataSet.color= Color.WHITE
                     binding.cfLineChart.data=cfLineData
                     cfLineDataSet.valueTextColor= Color.BLACK
                     cfLineDataSet.valueTextSize=15f
+                    cfLineData.setDrawValues(false)
                     binding.cfLineChart.animateX(2000)
 
                 })

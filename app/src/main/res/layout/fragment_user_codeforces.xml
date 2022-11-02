@@ -11,59 +11,73 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CODEFORCES"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_extrabold"
          />
-    <Button
-        android:id="@+id/cflogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOG OUT"
-        android:layout_alignParentEnd="true"
-        />
     <TextView
         android:id="@+id/cf_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/ucf_id"
-        android:textSize="30sp"
+        android:layout_marginStart="42dp"
+        android:textSize="18sp"
+        tools:text="Rating : 1234"
+        android:fontFamily="@font/nunito_regular"
+        android:layout_marginTop="25dp"
         />
     <TextView
         android:id="@+id/cf_maxRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/cf_rating"
-        android:textSize="30sp"
+        android:layout_marginStart="42dp"
+        android:textSize="18sp"
+        tools:text="Rating : 1234"
+        android:fontFamily="@font/nunito_regular"
+
         />
     <TextView
         android:id="@+id/cf_rank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/cf_maxRating"
-        android:textSize="30sp"
+        android:layout_marginStart="42dp"
+        android:textSize="18sp"
+        tools:text="Rating : 1234"
+        android:fontFamily="@font/nunito_regular"
+
         />
     <TextView
         android:id="@+id/cf_maxRank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/cf_rank"
-        android:textSize="30sp"
+        android:layout_marginStart="42dp"
+        android:textSize="18sp"
+        tools:text="Rating : 1234"
+       android:fontFamily="@font/nunito_regular"
         />
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/cfLineChart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/cf_maxRank"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
+        android:background="@drawable/graphbackground"
+        android:layout_centerHorizontal="true"
         />
-
+    <Button
+        android:id="@+id/cflogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOG OUT"
+        android:layout_below="@id/cfLineChart"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#FF0000"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nunito_extrabold"
+        />
 </RelativeLayout>

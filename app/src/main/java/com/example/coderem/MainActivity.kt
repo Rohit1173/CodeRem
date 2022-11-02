@@ -1,10 +1,12 @@
 package com.example.coderem
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,9 +43,15 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
 
                 R.id.myHome->{
+                    binding.tooltext.text="CodeRem"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.satisfy_regular)
+                    binding.tooltext.textSize= 32F
                     replace(Home())
                 }
                 R.id.cc ->{
+                    binding.tooltext.text="CodeChef"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+                    binding.tooltext.textSize= 22F
                     vm.readccdata.observe(this, Observer { user->
                         if(user==null){
                             replace(codechef())
@@ -55,6 +63,9 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.cf ->{
+                    binding.tooltext.text="CodeForces"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+                    binding.tooltext.textSize= 22F
                     vm.readcfdata.observe(this, Observer { user->
                         if(user==null){
                             replace(codeforces())
@@ -66,6 +77,9 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.lc->{
+                    binding.tooltext.text="LeetCode"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+                    binding.tooltext.textSize= 22F
                     vm.readlcdata.observe(this, Observer { user->
                         if(user==null){
                             replace(leetcode())
@@ -77,12 +91,21 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 R.id.settings->{
+                    binding.tooltext.text="Settings"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+                    binding.tooltext.textSize= 22F
                     replace(settings())
                 }
                 R.id.faq->{
+                    binding.tooltext.text="FAQ"
+                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+                    binding.tooltext.textSize= 22F
                     replace(faq())
                 }
                 R.id.support->{
+                    binding.tooltext.text="Support"
+                    binding.tooltext.typeface=  ResourcesCompat.getFont(this, R.font.nunito_extrabold )
+                    binding.tooltext.textSize= 22F
                     replace(support())
                 }
 
@@ -92,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun replace(fragment:Fragment){
+    private fun replace(fragment: Fragment){
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frag,fragment)

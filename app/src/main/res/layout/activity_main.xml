@@ -22,18 +22,17 @@
             style="@style/Theme.AppCompat.DayNight.DarkActionBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title=" "
-            >
+            app:title=" ">
 
             <TextView
+                android:id="@+id/tooltext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/satisfy_regular"
                 android:text="CodeRem"
-                android:layout_marginTop="8dp"
                 android:textColor="#3C4A63"
                 android:textSize="35sp"
-
                 />
         </androidx.appcompat.widget.Toolbar>
 

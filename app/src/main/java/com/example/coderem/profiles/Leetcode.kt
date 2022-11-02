@@ -30,12 +30,12 @@ class leetcode : Fragment() {
         vm = ViewModelProvider(this)[UserViewModel::class.java]
         binding.lctext.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.lclayout.error = null
+               // binding.lclayout.error = null
             }
         }
         binding.lcbtn.setOnClickListener {
             if(binding.lctext.text.toString().trim().isEmpty()) {
-                binding.lclayout.error="ID cannot be empty"
+               // binding.lclayout.error="ID cannot be empty"
 
             }
             else {
@@ -52,7 +52,7 @@ class leetcode : Fragment() {
                             val user = User(0, "LeetCode", binding.lctext.text.toString())
                             vm.addUser(user)
                         } else {
-                            binding.lclayout.error = "Invalid ID"
+                           // binding.lclayout.error = "Invalid ID"
                         }
                     }
                     else{

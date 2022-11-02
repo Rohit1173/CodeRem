@@ -26,9 +26,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#3C4A63"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/nunito_extrabold"
                 android:text="event name"
-                android:textStyle="bold"
                 android:textSize="30sp" />
 
 
@@ -40,7 +39,7 @@
             android:textColor="#18c73b"
             android:layout_marginTop="5dp"
             android:layout_below="@id/name"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/nunito_extrabold"
             android:text="yyyy-mm-dd hh:mm:ss am" />
 
         <TextView
@@ -50,7 +49,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:textColor="#de160b"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/nunito_extrabold"
             android:layout_below="@+id/startTime"
             android:text="yyyy-mm-dd hh:mm:ss am" />
 
@@ -65,7 +64,7 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:textSize="30sp"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/nunito_extrabold"
             android:textColor="#3C4A63"
             />
 
@@ -91,10 +90,9 @@
             android:layout_below="@+id/endTime"
             android:layout_marginTop="20dp"
             android:textColor="#3C4A63"
-            android:fontFamily="@font/nunito_regular"
+            android:fontFamily="@font/nunito_extrabold"
             android:textSize="25sp"
             android:layout_marginStart="35dp"
-            android:textStyle="bold"
             />
 
        <androidx.appcompat.widget.AppCompatCheckBox

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,69 +12,89 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CODECHEF"
-        android:textSize="30sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunito_extrabold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="16dp"
          />
 
 
-    <Button
-        android:id="@+id/cclogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOG OUT"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20dp"
-        />
+
 
     <TextView
         android:id="@+id/ccrating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ucc_id"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/nunito_regular"
+        tools:text="Rating : 1234"
         />
     <TextView
         android:id="@+id/ccstars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ccrating"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        tools:text="Rating : 1234"
+
         />
     <TextView
         android:id="@+id/cc_highestRating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ccstars"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginLeft="42dp"
+        android:fontFamily="@font/nunito_regular"
+        tools:text="Rating : 1234"
+
         />
     <TextView
         android:id="@+id/cc_globalRank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cc_highestRating"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_marginLeft="42dp"
+        android:fontFamily="@font/nunito_regular"
+        tools:text="Rating : 1234"
+
         />
     <TextView
         android:id="@+id/cc_countryRank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cc_globalRank"
-        android:textSize="30sp"
-        android:layout_centerHorizontal="true"
-        />
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/ccLineChart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/cc_countryRank"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
+        android:textSize="18sp"
+        android:layout_marginLeft="42dp"
+        android:fontFamily="@font/nunito_regular"
+        tools:text="Rating : 1234"
+
         />
 
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/ccLineChart"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/cc_countryRank"
+        android:background="@drawable/graphbackground"
+        android:layout_centerHorizontal="true"
+         />
+    <Button
+        android:id="@+id/cclogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOG OUT"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/ccLineChart"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="#FF0000"
+        android:fontFamily="@font/nunito_extrabold"
+        />
 </RelativeLayout>

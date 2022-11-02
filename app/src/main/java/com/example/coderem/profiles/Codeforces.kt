@@ -31,12 +31,12 @@ class codeforces : Fragment() {
         vm = ViewModelProvider(this)[UserViewModel::class.java]
         binding.cftext.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-                binding.cflayout.error = null
+               // binding.cflayout.error = null
             }
         }
         binding.cfbtn.setOnClickListener {
             if(binding.cftext.text.toString().trim().isEmpty()) {
-                binding.cflayout.error="ID cannot be empty"
+              //  binding.cflayout.error="ID cannot be empty"
 
             }
             else {
@@ -51,7 +51,7 @@ class codeforces : Fragment() {
                         vm.addUser(user)
                     }
                     else{
-                        binding.cflayout.error="Invalid ID"
+                      //  binding.cflayout.error="Invalid ID"
                     }
                 })
             }

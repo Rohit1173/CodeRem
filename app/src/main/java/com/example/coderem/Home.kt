@@ -1,16 +1,12 @@
 package com.example.coderem
 
 import android.os.Bundle
-import android.system.Os.remove
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
-import com.example.coderem.databinding.CardBinding
 import com.example.coderem.databinding.FragmentHomeBinding
-import com.facebook.shimmer.ShimmerFrameLayout
 
 
 class Home : Fragment() {

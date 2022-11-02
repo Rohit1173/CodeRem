@@ -31,15 +31,11 @@ class codechef : Fragment() {
         binding=FragmentCodechefBinding.inflate(inflater,container,false)
         vm = ViewModelProvider(this)[UserViewModel::class.java]
 
-            binding.cctext.doOnTextChanged { text, start, before, count ->
-                if (text.toString().isNotEmpty()) {
-                    binding.cclayout.error = null
-                }
-            }
+
 
         binding.ccbtn.setOnClickListener {
            if(binding.cctext.text.toString().trim().isEmpty()) {
-               binding.cclayout.error="ID cannot be empty"
+
 
            }
             else{
@@ -55,7 +51,7 @@ class codechef : Fragment() {
 
                            vm.addUser(user)
                        } else {
-                           binding.cclayout.error = "Invalid ID"
+                          // binding.cclayout.error = "Invalid ID"
                        }
                    })
                }
