@@ -13,9 +13,84 @@
         android:text="LEETCODE"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:fontFamily="@font/nunito_extrabold"
          />
+
+
+    <TextView
+        android:id="@+id/lc_ranking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ulc_id"
+        android:textSize="18sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_easySolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_ranking"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_mediumSolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_easySolved"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_hardSolved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_mediumSolved"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_hardSolved"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_problemsContributed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_points"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_tcContributed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_problemsContributed"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
+    <TextView
+        android:id="@+id/lc_reputation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lc_tcContributed"
+        android:textSize="18sp"
+        android:layout_marginStart="42dp"
+        android:fontFamily="@font/nunito_regular"
+        />
 
     <Button
         android:id="@+id/lclogout"
@@ -28,70 +103,5 @@
         android:backgroundTint="#FF0000"
         android:fontFamily="@font/nunito_extrabold"
         />
-    <TextView
-        android:id="@+id/lc_ranking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/ulc_id"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_easySolved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_ranking"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_mediumSolved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_easySolved"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_hardSolved"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_mediumSolved"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_hardSolved"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_problemsContributed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_points"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_tcContributed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_problemsContributed"
-        android:textSize="30sp"
-        />
-    <TextView
-        android:id="@+id/lc_reputation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/lc_tcContributed"
-        android:textSize="30sp"
-        />
-
 
 </RelativeLayout>
