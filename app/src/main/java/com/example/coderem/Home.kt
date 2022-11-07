@@ -1,5 +1,6 @@
 package com.example.coderem
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,8 @@ class Home : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.shimmerLayout.startShimmer()
+
+
         vm = ViewModelProvider.AndroidViewModelFactory(requireActivity().application)
             .create(ContestViewModel::class.java)
 

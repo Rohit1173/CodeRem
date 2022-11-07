@@ -36,6 +36,20 @@
             />
 
 
+    <TextView
+        android:id="@+id/cc_err"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:fontFamily="@font/nunito_extrabold"
+        tools:text="ERROR"
+        app:layout_constraintTop_toBottomOf="@+id/cctext"
+        android:layout_marginStart="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        />
+
+
 
 
     <Button
@@ -47,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="450dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.MyCustomFormatter
 import com.example.coderem.ProfileViewModel
 import com.example.coderem.ProfileViewModelFactory
-import com.example.coderem.R
 import com.example.coderem.database.database1.User
 import com.example.coderem.database.database1.UserViewModel
 import com.example.coderem.databinding.FragmentUserCodechefBinding
