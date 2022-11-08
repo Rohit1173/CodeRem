@@ -44,7 +44,7 @@ class codechef : Fragment() {
         binding.ccbtn.setOnClickListener {
            if(binding.cctext.text.toString().trim().isEmpty()) {
                binding.cctext.background= ContextCompat.getDrawable(requireContext(),R.drawable.error_border)
-               binding.ccErr.text = "Edhokati raayu ra "
+               binding.ccErr.text = "ID cannot be empty"
 
            }
             else{

@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.ProfileViewModel
 import com.example.coderem.ProfileViewModelFactory
+import com.example.coderem.R
 import com.example.coderem.database.database1.User
 import com.example.coderem.database.database1.UserViewModel
 import com.example.coderem.databinding.FragmentLeetcodeBinding
@@ -30,12 +32,14 @@ class leetcode : Fragment() {
         vm = ViewModelProvider(this)[UserViewModel::class.java]
         binding.lctext.doOnTextChanged { text, start, before, count ->
             if (text.toString().isNotEmpty()) {
-               // binding.lclayout.error = null
+                binding.lctext.background= ContextCompat.getDrawable(requireContext(),R.drawable.border)
+                binding.lcErr.text = ""
             }
         }
         binding.lcbtn.setOnClickListener {
             if(binding.lctext.text.toString().trim().isEmpty()) {
-               // binding.lclayout.error="ID cannot be empty"
+                binding.lctext.background= ContextCompat.getDrawable(requireContext(), R.drawable.error_border)
+                binding.lcErr.text="ID cannot be empty"
 
             }
             else {
@@ -46,16 +50,18 @@ class leetcode : Fragment() {
                 pvm.lcResponse.observe(viewLifecycleOwner, Observer {
 
                     if(it!=null) {
-                        if (it.status.toString() == "Success") {
+                        if (it.status == "Success") {
                             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)
                                 .show()
                             val user = User(0, "LeetCode", binding.lctext.text.toString())
                             vm.addUser(user)
                         } else {
-                           // binding.lclayout.error = "Invalid ID"
+                            binding.lctext.background= ContextCompat.getDrawable(requireContext(),R.drawable.error_border)
+                            binding.lcErr.text = "Invalid ID"
                         }
                     }
                     else{
+
                         Toast.makeText(requireContext(), "Try Again", Toast.LENGTH_LONG)
                             .show()
                     }

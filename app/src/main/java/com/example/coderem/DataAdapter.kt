@@ -1,6 +1,7 @@
 package com.example.coderem
 
 import android.annotation.SuppressLint
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -16,10 +17,13 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatCheckBox
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.channelID
+import com.example.messageExtra
+import com.example.titleExtra
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -42,6 +46,56 @@ class DataAdapter(private var list: MutableList<CodeData>) :
 
         val settings: SharedPreferences = context.getSharedPreferences("mysettings", 0)
         val editor = settings.edit()
+
+         @RequiresApi(Build.VERSION_CODES.M)
+         fun scheduleNotification(s1:String) {
+            val intent = Intent(context, Notification::class.java)
+            val title = name.text.toString()
+            val message = startTime.text.toString()
+            intent.putExtra(titleExtra, title)
+            intent.putExtra(messageExtra, message)
+
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                (1).toInt(),
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val time = getTime(s1)
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                time,
+                pendingIntent
+            )
+        }
+
+        @RequiresApi(Build.VERSION_CODES.M)
+        fun cancelNotification() {
+            val intent = Intent(context, Notification::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(
+                context,
+                1, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            val am = context.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
+            am.cancel(pendingIntent)
+// Cancel the `PendingIntent` after you've canceled the alarm
+// Cancel the `PendingIntent` after you've canceled the alarm
+            pendingIntent.cancel()
+        }
+
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun createNotificationChannel()
+        {
+            val name = "Notif Channel"
+            val desc = "A Description of the Channel"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(channelID, name, importance)
+            channel.description = desc
+            val notificationManager = context.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
 
         fun printDifferenceDateForHours(s1: String, s2: String, t: TextView) {
 
@@ -104,7 +158,7 @@ class DataAdapter(private var list: MutableList<CodeData>) :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.createNotificationChannel()
         val item = list[position]
         holder.name.text = item.name
         holder.site.text = item.site
@@ -157,7 +211,26 @@ class DataAdapter(private var list: MutableList<CodeData>) :
 
         holder.printDifferenceDateForHours(s1, s2, holder.countdown)
 
+
 holder.checkB.isChecked=holder.settings.getBoolean(holder.name.text.toString(),false)
+
+        holder.checkB.setOnClickListener {
+            if (holder.checkB.isChecked) {
+                holder.scheduleNotification(s1)
+                Toast.makeText(
+                    holder.context,
+                    "Notifications Enbaled for " + holder.name.text.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                holder.cancelNotification()
+                Toast.makeText(
+                    holder.context,
+                    "Notifications Disabled for " + holder.name.text.toString(),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
         holder.checkB.setOnCheckedChangeListener { _, isChecked ->
 
@@ -165,19 +238,7 @@ holder.checkB.isChecked=holder.settings.getBoolean(holder.name.text.toString(),f
             holder.editor.putBoolean(holder.name.text.toString(), checkBoxValue)
             holder.editor.commit()
 
-            if (isChecked) {
-                Toast.makeText(
-                    holder.context,
-                    "Notif Enbaled for" + holder.name.text.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-            } else {
-                Toast.makeText(
-                    holder.context,
-                    "Notif Disabled for" + holder.name.text.toString(),
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+
         }
 
 
@@ -187,6 +248,10 @@ holder.checkB.isChecked=holder.settings.getBoolean(holder.name.text.toString(),f
             startActivity(holder.context, openURL, null)
         }
     }
+
+
+
+
 
     override fun getItemCount(): Int {
         return list.size
@@ -200,6 +265,12 @@ holder.checkB.isChecked=holder.settings.getBoolean(holder.name.text.toString(),f
         }
     }
 
+}
+private fun getTime(s1:String): Long
+{
+    val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss aa", Locale.getDefault())
+    val endDate1 = format.parse(s1)
+    return endDate1!!.time
 }
 
 //private fun diff(
@@ -234,5 +305,6 @@ private fun change(date: String): String {
 
     return s
 }
+
 
 
