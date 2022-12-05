@@ -1,7 +1,10 @@
 package com.example.coderem
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -21,9 +24,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.channelID
-import com.example.messageExtra
-import com.example.titleExtra
 import java.text.SimpleDateFormat
 import java.time.ZoneId
 import java.time.ZonedDateTime

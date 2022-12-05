@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.coderem.databinding.FragmentHomeBinding
+import com.example.coderem.databinding.FragmentUpcomingBinding
 
 
-class Home : Fragment() {
+class upcoming : Fragment() {
     lateinit var vm: ContestViewModel
 
 
-    lateinit var binding: FragmentHomeBinding
+    lateinit var binding: FragmentUpcomingBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentUpcomingBinding.inflate(inflater, container, false)
         binding.shimmerLayout.startShimmer()
 
 
@@ -44,10 +44,7 @@ class Home : Fragment() {
             binding.recycler.adapter = DataAdapter(ml)
             binding.recycler.setHasFixedSize(true)
         }
-        val list: MutableList<String> =
-            mutableListOf("CODEFORCES", "CODECHEF", "LEETCODE", "ATCODER", "KICKSTART")
-        binding.names.adapter = FilterAdapter(list)
-        binding.names.setHasFixedSize(true)
+
 
 
         return binding.root

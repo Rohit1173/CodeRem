@@ -1,4 +1,4 @@
-package com.example
+package com.example.coderem
 
 import android.app.NotificationManager
 import android.content.BroadcastReceiver

@@ -1,6 +1,8 @@
 package com.example.coderem
 
-import android.graphics.Typeface
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -14,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.coderem.database.database1.UserViewModel
 import com.example.coderem.databinding.ActivityMainBinding
 import com.example.coderem.profiles.*
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
@@ -47,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     binding.tooltext.text="CodeRem"
                     binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.satisfy_regular)
                     binding.tooltext.textSize= 32F
-                    replace(Home())
+                    replace(upcoming())
                 }
                 R.id.cc ->{
                     binding.tooltext.text="CodeChef"
@@ -91,23 +94,31 @@ class MainActivity : AppCompatActivity() {
                     })
 
                 }
-                R.id.settings->{
-                    binding.tooltext.text="Settings"
-                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
-                    binding.tooltext.textSize= 22F
-                    replace(settings())
+//                R.id.settings->{
+//                    binding.tooltext.text="Settings"
+//                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+//                    binding.tooltext.textSize= 22F
+//                    replace(settings())
+//                }
+//                R.id.faq->{
+//                    binding.tooltext.text="FAQ"
+//                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
+//                    binding.tooltext.textSize= 22F
+//                    replace(faq())
+//                }
+//                R.id.support->{
+//                    binding.tooltext.text="Support"
+//                    binding.tooltext.typeface=  ResourcesCompat.getFont(this, R.font.nunito_extrabold )
+//                    binding.tooltext.textSize= 22F
+//                    replace(support())
+//                }
+                R.id.github->{
+                    val openURL = Intent(Intent.ACTION_VIEW)
+                    openURL.data = Uri.parse("https://github.com/Rohit1173/CodeRem")
+                    startActivity(openURL)
                 }
-                R.id.faq->{
-                    binding.tooltext.text="FAQ"
-                    binding.tooltext.typeface= ResourcesCompat.getFont(this, R.font.nunito_extrabold)
-                    binding.tooltext.textSize= 22F
-                    replace(faq())
-                }
-                R.id.support->{
-                    binding.tooltext.text="Support"
-                    binding.tooltext.typeface=  ResourcesCompat.getFont(this, R.font.nunito_extrabold )
-                    binding.tooltext.textSize= 22F
-                    replace(support())
+                R.id.mail->{
+                   sendEmail()
                 }
 
             }
@@ -115,6 +126,16 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+    private fun sendEmail() {
+        val emailIntent = Intent(Intent.ACTION_SENDTO)
+        emailIntent.data =
+            Uri.parse("mailto:" + "sairohitchappa01@gmail.com") // You can use "mailto:" if you don't know the address beforehand.
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send email using..."))
+        } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(this, "No email clients installed.", Toast.LENGTH_SHORT).show()
+        }
     }
     private fun replace(fragment: Fragment){
         val fragmentManager = supportFragmentManager
